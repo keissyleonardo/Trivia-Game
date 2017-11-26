@@ -1,0 +1,41 @@
+button {
+	width: 75%; 
+	height: 35%;
+	float: left;
+}
+
+body {
+	background-color:rgb(255, 99, 71); 
+	font-family: sans-serif;
+}
+
+
+h1 {
+	font-family: Sans-serif; 
+	font-size: 50px;
+	text-align: center;
+}
+
+button {
+	width: 30%;
+	height: 40px;
+	margin: 0 10%;
+	float: left;
+}
+
+img {
+	width: 700px;
+	margin: auto;
+	float: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.questionText {
+	font-family: Sans-serif; 
+	font-size: 25px;
+	text-align: center;	
+
+
+}
