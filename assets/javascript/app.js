@@ -1,26 +1,19 @@
 $(document).ready(function() {
 
-		var count=30;
-		var timeleft= $('<div class="timer">');
-		var index = 0;
-		
+	var intervalId = setInterval(timer, 1000); 
+	var count=30;
+	var timeleft= $('<div class="timer">');
 
-		function timer(){
-			count--;
-			if (count <= 0) {
-			console.log("times up!");
-			} 
 
-		} 
-
-			
+	function timer(){
+		count--;
+		if (count <= 0) {
+			console.log("times up");
+			clearInterval(intervalId);
+		}
+	}
+	
 });
-
-
-// setTimeout(function(){
-		//   alert("Boom!");
-		// }, 3000);
-
 
 var correct = 0;
 var wrong = 0;
@@ -118,27 +111,59 @@ var q10 = {
 
 var questionArray = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
 
-var classQuestion= $('<div class="question">');
-var classquestionText= $('<h3 class="questionText">');
 
-classQuestion.append(classquestionText);
 
-var classAnswers= $('<div class="answers">');
-var buttonA= $('<button class="answerchoice buttonA">');
-var buttonB= $('<button class="answerchoice buttonB">');
-var buttonC= $('<button class="answerchoice buttonC">');
-var buttonD= $('<button class="answerchoice buttonD">');
+function createNewQuestionHTML(theQuestionObject, unique) {
+	// Create basic empty markup
+	var classQuestion= $('<div class="question">');
+	var classquestionText= $('<h3 class="questionText">');
+
+	classQuestion.append(classquestionText);
+
+	var words = "answers" + unique;
+
+	var classAnswers= $('<div class="answers">');
+	var buttonA= $('<input type="radio" name="answers'+ unique +'" value="buttonA" class="answerchoice buttonA">');
+	var buttonB= $('<input type="radio" name="answers'+ unique +'" value="buttonB" class="answerchoice buttonB">');
+	var buttonC= $('<input type="radio" name="answers'+ unique +'" value="buttonC" class="answerchoice buttonC">');
+	var buttonD= $('<input type="radio" name="answers'+ unique +'" value="buttonD" class="answerchoice buttonD">');
 
 	classAnswers.append(buttonA);
 	classAnswers.append(buttonB);
 	classAnswers.append(buttonC);
 	classAnswers.append(buttonD);
 
-classQuestion.append(classAnswers);
+	classQuestion.append(classAnswers);
 
-var questionList = $('#questionList');
+	// Fill in the values
+	classquestionText.html(theQuestionObject.question);
+	buttonA.after(theQuestionObject.possibleAnswers[0]);
+	buttonB.after(theQuestionObject.possibleAnswers[1]);
+	buttonC.after(theQuestionObject.possibleAnswers[2]);
+	buttonD.after(theQuestionObject.possibleAnswers[3]);
 
-questionList.append(classQuestion);
+	// Add it to the page HTML
+	var questionList = $('#questionList');
+	questionList.append(classQuestion);
+}
+
+createNewQuestionHTML(q1, 1);
+createNewQuestionHTML(q2, 2);
+createNewQuestionHTML(q3, 3);
+createNewQuestionHTML(q4, 4);
+createNewQuestionHTML(q5, 5);
+createNewQuestionHTML(q6, 6);
+createNewQuestionHTML(q7, 7);
+createNewQuestionHTML(q8, 8);
+createNewQuestionHTML(q9, 9);
+createNewQuestionHTML(q10, 10);
+
+
+
+
+
+
+
 
 
 // function loadQuestion(questionSelection) {
