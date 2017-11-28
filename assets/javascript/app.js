@@ -1,26 +1,33 @@
 $(document).ready(function() {
 
+
+
 	var intervalId = setInterval(timer, 1000); 
-	var count=30;
-	var timeleft= $('<div class="timer">');
+	var count=3;
+	var timeleft= 0;
 
-
+	// Timer starts 
 	function timer(){
 		count--;
 		if (count <= 0) {
-			console.log("times up");
 			clearInterval(intervalId);
 		}
 	}
-	
-});
 
-var correct = 0;
-var wrong = 0;
+	function start(){
+		$('#StartButton').on("click", function(){
+			$('display').html(timeleft);
+				alert("this worked");
+		});
+	}
+
+			start();
+
+});
 
 // Questions & Answers Arranys 
 var q1 = {
-				question : 'What is Rachels favorite flower?',
+				question : '1. What is Rachels favorite flower?',
 				possibleAnswers : ['A. Orchids',
 							 'B. Roses',
 							 'C. Lilys',
@@ -29,7 +36,7 @@ var q1 = {
 			};
 
 var q2 = {
-				question: 'Where did Ross and Emily end up on their first date?',
+				question: '2. Where did Ross and Emily end up on their first date?',
 				possibleAnswers: ['A. Italy ',
 							 'B. Vermont',
 							 'C. Connecticut',
@@ -38,7 +45,7 @@ var q2 = {
 			};
 
 var q3 = {
-				question : "What does Joey wear to Monica and Chandler's wedding?",
+				question : "3. What does Joey wear to Monica and Chandler's wedding?",
 				possibleAnswers : ['A. Basketball shorts',
 							 'B. An Army uniform',
 							 'C. Policy uniform',
@@ -47,7 +54,7 @@ var q3 = {
 			};
 
 var q4 = {
-				question : '"Pi-VOT!" Who said it?',
+				question : '"4. Pi-VOT!" Who said it?',
 				possibleAnswers : ['A. Ross ',
 							 'B. Phoebe',
 							 'C. Rachel',
@@ -56,7 +63,7 @@ var q4 = {
 			};
 
 var q5 = {
-				question : "What was Monica's appartment number",
+				question : "5. What was Monica's appartment number",
 				possibleAnswers : ['A. 30',
 							 'B. 20',
 							 'C. 5',
@@ -65,7 +72,7 @@ var q5 = {
 			};
 
 var q6 = {
-				question : "Where is Rachel leaving to in 'The Last One?'",
+				question : "6. Where is Rachel leaving to in 'The Last One?'",
 				possibleAnswers : ['A. Paris',
 							 'B. Milan',
 							 'C. Amsterdam',
@@ -74,7 +81,7 @@ var q6 = {
 			};
 
 var q7 = {
-				question : 'What does Monica receive from her father?',
+				question : '7. What does Monica receive from her father?',
 				possibleAnswers : ['A. A dog',
 							 'B. A cat',
 							 'C. A Porsche',
@@ -83,7 +90,7 @@ var q7 = {
 			};
 
 var q8 = {
-				question : 'What song did Ross sing to make Emma laugh?',
+				question : '8. What song did Ross sing to make Emma laugh?',
 				possibleAnswers : ['A. Milkshake',
 							 'B. Baby Got Back',
 							 'C. Baby One More Time',
@@ -92,7 +99,7 @@ var q8 = {
 			};
 
 var q9 = {
-				question : 'Where has Rachel NOT worked?',
+				question : '9. Where has Rachel NOT worked?',
 				possibleAnswers : ['A. Fortuna Fashion',
 							 'B. Ralph Lauren',
 							 'C. Bloomingdales',
@@ -101,7 +108,7 @@ var q9 = {
 			};
 
 var q10 = {
-				question : 'What is the dessert that Rachel and Chandler ate off the floor?',
+				question : '10. What is the dessert that Rachel and Chandler ate off the floor?',
 				possibleAnswers : ['A. Chocolate Cake',
 							  'B. Cheesecake',
 							  'C. Red velvet',
@@ -123,7 +130,7 @@ function createNewQuestionHTML(theQuestionObject, unique) {
 	var words = "answers" + unique;
 
 	var classAnswers= $('<div class="answers">');
-	var buttonA= $('<input type="radio" name="answers'+ unique +'" value="buttonA" class="answerchoice buttonA">');
+	var buttonA= $('<input type="radio" name="answers'+ unique +'" value="buttonA" class="answerchoicebuttonA">');
 	var buttonB= $('<input type="radio" name="answers'+ unique +'" value="buttonB" class="answerchoice buttonB">');
 	var buttonC= $('<input type="radio" name="answers'+ unique +'" value="buttonC" class="answerchoice buttonC">');
 	var buttonD= $('<input type="radio" name="answers'+ unique +'" value="buttonD" class="answerchoice buttonD">');
@@ -145,6 +152,9 @@ function createNewQuestionHTML(theQuestionObject, unique) {
 	// Add it to the page HTML
 	var questionList = $('#questionList');
 	questionList.append(classQuestion);
+
+
+
 }
 
 createNewQuestionHTML(q1, 1);
@@ -160,92 +170,29 @@ createNewQuestionHTML(q10, 10);
 
 
 
+var userTotal= 0; 
+var wins= 0;
+var losses = 0;
+var won = true;
+
+
+$("#numberWin").text(wins); 
+$("#numberLoss").text(losses);
 
 
 
 
+function scoreBoard () {
+	if (q1.possibleAnswers == q1.answer){
+	wins++;
+	alert("Good");
+	}
+	// if (q1.possibleAnswers !== q1.answer){
+	// 	losses++;
+	// 	alert("Not Good");
+	// }
+
+}
+scoreBoard();
 
 
-// function loadQuestion(questionSelection) {
-// 	// console.log(questionSelection);
-// 	// countdown.reset();
-//   $(".question").html("<h3>" + questionArray[questionSelection].question + "</h3>");
-//   $(".buttonA").html(questionArray[questionSelection].possibleAnswers[0]).show();
-//   $(".buttonB").html(questionArray[questionSelection].possibleAnswers[1]).show();
-//   $(".buttonC").html(questionArray[questionSelection].possibleAnswers[2]).show();
-//   $(".buttonD").html(questionArray[questionSelection].possibleAnswers[3]).show();
-
-// // 	console.log(questionArray[questionSelection]		);
-// // //  getAnswer();  
-// //  nextQuestion(index);
-//}
-
-
-
-// 		function setup(){
-// 			index = 0;
-// 			$('.question').append('<button id="startButton">Start</button>');
-// 			$('#startButton').on('click', function() {
-// 				$(this).hide();
-// 				countdown.start();
-// 			 	loadQuestion(index);
-// 			});
-// 		}		
-
-
-
-
-
-
-
-
-
-
-		// function getAnswer() {
-
-		// //  nextQuestion();
-		// 	$('.answerchoice').on('click', function() {
-		// 	  console.log('alert', index);
-		// 		index++;
-		// 		console.log('click', index);
-		// 		$(".question").text('');
-		// 		$("#buttonA").text('');
-		// 		$("#buttonB").text('');
-		// 		$("#buttonC").text('');
-		// 		$("#buttonD").text('');
-		// 		loadQuestion();
-		// 	});	
-		// }
-
-		// function answerCorrect() {
-		// 	correct++;
-		// 	alert("Correct!");
-		// 	console.log("correct");
-		// }
-
-		// function answerWrong() {
-		// 	wrong++;
-		// 	alert("Incorrect!");
-		// 	console.log("wrong");
-		// }
-
-		// function showScore() {
-		// 	$('.question').empty();
-		// 	$('.question').append("<h2><p>" + correct + " correct</p></h2>");
-		// 	$('.question').append("<h2><p>" + wrong + " incorrect</p></h2>");
-		// 	countdown.stop();
-		// 	$('.timer').empty();
-
-		// }
-
-
-
-// $(".question").text('');
-// $("#buttonA").text('');
-// $("#buttonB").text('');
-// $("#buttonC").text('');
-// $("#buttonD").text('');
-// index++;
-// if (index < questionArray.length) {
-// 	loadQuestion(index);
-// }

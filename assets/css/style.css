@@ -39,3 +39,43 @@ img {
 
 
 }
+.display {
+  font-family: monospace;
+  font-size: 50px;
+  color: white;
+  text-align: center;
+
+}
+
+.answers {
+	text-align: center;
+	margin: auto;
+	height: 50px;
+}
+
+h2 {
+	text-align: center;
+	margin: auto;
+	height: 50px;
+}
+
+.goodScore{
+	text-align: center;
+	margin: auto;
+	height: 50px;
+}
+
+.badScore {
+	text-align: center;
+	margin: auto;
+	height: 50px;
+}
+#StartButton{
+	width: 50px;
+	margin: auto;
+	float: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+
+}
